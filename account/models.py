@@ -3,6 +3,8 @@ from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
                                         PermissionsMixin)
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
+from django.core.mail import send_mail
+
 # Create your models here.
 
 
@@ -56,6 +58,16 @@ class UserBase(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = "Accounts"
         verbose_name_plural = "Accounts"
+
+    def email_user(self, subject, message):
+        send_mail(
+            subject,
+            message,
+            'harountaha@outlook.sa',
+            [self.email],
+            fail_silently=False,
+        )
+
 
     def __str__(self):
         return self.user_name
