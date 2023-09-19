@@ -1,12 +1,11 @@
-{% extends "store/base.html" %}
+{% extends "../base.html" %}
 {% load static %}
 {% block title %}
-{{ product.name }}
+{{ product.title }}
 {% endblock %}
 {% block content %}
 
 
-<main class="pt-2">
 
   <div class="container" style="max-width: 1000px">
 
@@ -41,8 +40,8 @@
                     </div>
             </div>
             <hr>
-            <button type="button" id='add-button' value="{{product.id}}" class="btn btn-success fw500">Add to basket</button>
-            <button type="button" id='add-button' value="{{product.id}}" class="btn btn-light fw500">Add to Favorites</button>
+            <button type="button" id="add-button" value="{{product.id}}" class="btn btn-success fw500">Add to basket</button>
+            <button type="button" id="add-button" value="{{product.id}}" class="btn btn-light fw500">Add to Favorites</button>
             </div>
         </div>
 
@@ -68,7 +67,6 @@
 
     </div>
   </div>
-</main>
 
 <script>
     $(document).on('click', '#add-button', function (e) {

@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 # Create your views here.
 from .tokens import account_activation_token
-from .forms import RegistrationForm,UserEditForm
+from .forms import RegistrationForm, UserEditForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login ,authenticate, logout
+from django.contrib.auth import login, authenticate, logout
 from .models import UserBase
 
 
@@ -40,8 +40,8 @@ def delete_user(request):
     logout(request)
     return redirect('account:delete_confirmation')
 
-def account_register(request):
 
+def account_register(request):
     # if request.user.is_authenticated:
     #     return redirect('/')
 
@@ -69,6 +69,7 @@ def account_register(request):
 
     return render(request, 'account/registration/register.html', {'form': registerForm})
 
+
 def account_activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -82,5 +83,3 @@ def account_activate(request, uidb64, token):
         return redirect('account:dashboard')
     else:
         return render(request, 'account/registration/activation_invalid.html')
-
-
